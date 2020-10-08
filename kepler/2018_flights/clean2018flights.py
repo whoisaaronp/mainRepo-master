@@ -56,4 +56,3 @@ s4 = flights_full[flights_full['Quarter'] == 4].sample(5000).index
 
 flights_full.loc[s1.union(s2).union(s3).union(
     s4)].to_csv('./data/simplified_flights.csv')
-# %%

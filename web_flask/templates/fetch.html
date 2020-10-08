@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block page_content %}
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+	<div
+		class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+		<h1 class="h2">Check Updates</h1>
+	</div>
+	{% if content %}
+	<div class="jumbotron jumbotron-fluid">
+		<div class="container">
+			<h2 class="display-4">New Updates</h2>
+			<p>
+				{% for daily_data in content['items'] %}
+				<p>
+					<h5>Fetch Status<span class="badge {{ 'badge-success' if content['status'] == 'ok' else 'badge-warning' }}">{{ content['status'] }}</span></h5>
+					<h5>Lasted Updated<span class="badge badge-secondary">{{ daily_data['date'] | strftime }}></span></h5>
+					<h5>Total Tested<span class="badge badge-secondary">{{ daily_data['total'] }}></span></h5>
+					<h5>Resolved<span class="badge badge-secondary">{{ daily_data['resolved'] }}></span></h5>
+					<h5>Under Investigation<span class="badge badge-secondary">{{ daily_data['pending'] }}></span></h5>
+					<h5>Confirmed<span class="badge badge-danger progress-bar-striped">{{ daily_data['confirmed']['total'] }}></span></h5>
+					<h5>Deceased<span class="badge badge-dark progress-bar-striped">{{ daily_data['deceased'] }}></span></h5>
+				</p>
+				{% endfor %}
+			</p>
+			<p class="lead">This is a simple hero unit, a simple jumbotron-style componentfor calling extra attention to featured content or information.</p>
+			<hr class="my-4">
+			<p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+			<a class="btn btn-primary btn-lg" href="/" role="button">Learn more</a>
+		</div>
+	</div>
+	{% endif %}
+</main>
+{% endblock %}
